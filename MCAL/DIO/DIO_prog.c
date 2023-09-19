@@ -1,5 +1,5 @@
-#include "stdTypes.h"
-#include "errorStates.h"
+#include "../../LIB/stdTypes.h"
+#include "../../LIB/errorStates.h"
 #include "DIO_priv.h"
 #include "DIO_config.h"
 

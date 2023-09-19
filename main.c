@@ -1,6 +1,6 @@
-#include "stdTypes.h"
-#include "errorStates.h"
-#include "DIO_int.h"
+#include "LIB/stdTypes.h"
+#include "LIB/errorStates.h"
+#include "MCAL/DIO/DIO_int.h"
 #include <util/delay.h>
 
 int main()

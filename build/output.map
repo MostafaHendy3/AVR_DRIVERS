@@ -18,8 +18,8 @@ user_signatures  0x0000000000850000 0x0000000000000400 rw !x
 Linker script and memory map
 
 LOAD c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega32.o
-LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccYDq7Oq.o
-LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccwP9nE9.o
+LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccq3eiaL.o
+LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccfFnAte.o
 START GROUP
 LOAD c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a
 LOAD c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5\libm.a
@@ -202,7 +202,8 @@ END GROUP
                 0x0000000000000068                __vector_16
                 0x0000000000000068                __vector_18
                 0x0000000000000068                __vector_20
- .text          0x000000000000006c      0x23e C:\Users\MRHEND~1\AppData\Local\Temp\ccYDq7Oq.o
+ .text          0x000000000000006c        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccq3eiaL.o
+ .text          0x000000000000006c      0x23e C:\Users\MRHEND~1\AppData\Local\Temp\ccfFnAte.o
                 0x000000000000006c                DIO_enuInit
                 0x0000000000000084                DIO_enuSetPortDirection
                 0x00000000000000ae                DIO_enuSetPortValue
@@ -212,11 +213,10 @@ END GROUP
                 0x00000000000001b4                DIO_enuSetPinValue
                 0x0000000000000216                DIO_enuTogPinValue
                 0x0000000000000260                DIO_enuGetPinValue
- .text          0x00000000000002aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccwP9nE9.o
  .text          0x00000000000002aa        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
                 0x00000000000002aa                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x00000000000002aa       0x88 C:\Users\MRHEND~1\AppData\Local\Temp\ccwP9nE9.o
+ .text.startup  0x00000000000002aa       0x88 C:\Users\MRHEND~1\AppData\Local\Temp\ccq3eiaL.o
                 0x00000000000002aa                main
  .text.libgcc.mul
                 0x0000000000000332        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
@@ -262,8 +262,8 @@ END GROUP
                 [!provide]                        PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800060        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega32.o
- .data          0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccYDq7Oq.o
- .data          0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccwP9nE9.o
+ .data          0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccq3eiaL.o
+ .data          0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccfFnAte.o
  .data          0x0000000000800060        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  *(.data*)
  *(.gnu.linkonce.d*)
@@ -278,8 +278,8 @@ END GROUP
                 [!provide]                        PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x0000000000800060        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega32.o
- .bss           0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccYDq7Oq.o
- .bss           0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccwP9nE9.o
+ .bss           0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccq3eiaL.o
+ .bss           0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccfFnAte.o
  .bss           0x0000000000800060        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  *(.bss*)
  *(COMMON)
@@ -333,9 +333,9 @@ END GROUP
 
 .comment        0x0000000000000000       0x30
  *(.comment)
- .comment       0x0000000000000000       0x30 C:\Users\MRHEND~1\AppData\Local\Temp\ccYDq7Oq.o
+ .comment       0x0000000000000000       0x30 C:\Users\MRHEND~1\AppData\Local\Temp\ccq3eiaL.o
                                          0x31 (size before relaxing)
- .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccwP9nE9.o
+ .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccfFnAte.o
 
 .note.gnu.avr.deviceinfo
                 0x0000000000000000       0x3c
@@ -408,5 +408,5 @@ END GROUP
 
 .debug_macro
  *(.debug_macro)
-OUTPUT(output/output.hex elf32-avr)
+OUTPUT(build/output.hex elf32-avr)
 LOAD linker stubs
