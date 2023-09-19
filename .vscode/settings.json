@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "dio_int.h": "c",
+        "errorstates.h": "c",
+        "dio_priv.h": "c",
+        "dio_config.h": "c",
+        "delay.h": "c"
+    }
+}
