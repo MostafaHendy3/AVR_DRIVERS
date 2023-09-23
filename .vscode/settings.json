@@ -4,6 +4,10 @@
         "errorstates.h": "c",
         "dio_priv.h": "c",
         "dio_config.h": "c",
-        "delay.h": "c"
+        "delay.h": "c",
+        "switch_config.h": "c",
+        "switch_priv.h": "c",
+        "stdtypes.h": "c",
+        "switch_int.h": "c"
     }
 }

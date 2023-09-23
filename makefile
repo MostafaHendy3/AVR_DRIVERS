@@ -12,11 +12,10 @@ OBJDUMP = avr-objdump
 CFLAGS = -Wall -std=c99 -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os
 
 # Source files and output file
-SRC_DIR = MCAL/DIO
-SRC_FILES = main.c $(wildcard $(SRC_DIR)/*.c)
+SRC_DIRS = MCAL HAL # Source directories
+SRC_FILES = main.c $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c)) $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*/*.c))
 OUT_DIR = build
 OUT_FILE = $(OUT_DIR)/output.hex
-LST_FILE = $(OUT_DIR)/output.lst  # Assembly listing file
 MAP_FILE = $(OUT_DIR)/output.map  # Memory map file
 
 # Create the output directory if it doesn't exist
