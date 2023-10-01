@@ -8,6 +8,9 @@
         "switch_config.h": "c",
         "switch_priv.h": "c",
         "stdtypes.h": "c",
-        "switch_int.h": "c"
+        "switch_int.h": "c",
+        "led_priv.h": "c",
+        "led_config.h": "c",
+        "led_int.h": "c"
     }
 }

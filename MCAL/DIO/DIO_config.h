@@ -3,7 +3,7 @@
 #ifndef DIO_CONFIG_H_
 #define DIO_CONFIG_H_
 //DIR
-#define PA_PIN0_DIR			INPUT
+#define PA_PIN0_DIR			OUTPUT
 #define PA_PIN1_DIR			OUTPUT
 #define PA_PIN2_DIR			OUTPUT
 #define PA_PIN3_DIR			OUTPUT
@@ -12,8 +12,8 @@
 #define PA_PIN6_DIR			OUTPUT
 #define PA_PIN7_DIR			OUTPUT
 
-#define PB_PIN0_DIR			OUTPUT
-#define PB_PIN1_DIR			OUTPUT
+#define PB_PIN0_DIR			 INPUT
+#define PB_PIN1_DIR			 INPUT
 #define PB_PIN2_DIR			OUTPUT
 #define PB_PIN3_DIR			OUTPUT
 #define PB_PIN4_DIR			OUTPUT
@@ -40,7 +40,7 @@
 #define PD_PIN7_DIR			OUTPUT
 
 //valueINPUTLOW
-#define PA_PIN0_VAL			HIGH
+#define PA_PIN0_VAL			LOW
 #define PA_PIN1_VAL			LOW
 #define PA_PIN2_VAL			LOW
 #define PA_PIN3_VAL			LOW

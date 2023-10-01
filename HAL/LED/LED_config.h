@@ -2,7 +2,7 @@
 #ifndef LED_CONFIG_H_
 #define LED_CONFIG_H_
 
-#define LED_NUM 3
+#define LED_NUM 2
 typedef struct{
     u8 LED_u8Port;
     u8 LED_u8Pin;

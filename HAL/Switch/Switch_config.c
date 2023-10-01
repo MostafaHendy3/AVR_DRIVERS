@@ -8,7 +8,7 @@
 #include "Switch_priv.h"
 
 SW_t Switch_AstrSwitchState[SW_NUM]={
-    {DIO_u8PORTA, DIO_u8PIN0, DIO_u8PULL_UP},
-    {DIO_u8PORTA, DIO_u8PIN1, DIO_u8FLOAT},
-    {DIO_u8PORTA, DIO_u8PIN2, DIO_u8FLOAT},
+    {DIO_u8PORTC, DIO_u8PIN0, DIO_u8PULL_UP},
+    {DIO_u8PORTC, DIO_u8PIN1, DIO_u8PULL_UP},
+    {DIO_u8PORTC, DIO_u8PIN2, DIO_u8PULL_UP},
 };
