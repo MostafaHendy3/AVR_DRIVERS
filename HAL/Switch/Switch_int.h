@@ -4,9 +4,11 @@
 #include "../../LIB/errorStates.h"
 #include "../../LIB/stdTypes.h"
 
-#include "Switch_priv.h"
-#include "Switch_config.h"
-
+typedef struct {
+    u8 SW_PortID;
+    u8 SW_PinID;
+    u8 SW_Status;
+}SW_t;
 
 //function to initialize the switch
 ES_t Switch_enuInit(SW_t * Copy_AstrSwitchState);
