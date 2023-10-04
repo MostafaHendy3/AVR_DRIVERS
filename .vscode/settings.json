@@ -11,6 +11,7 @@
         "switch_int.h": "c",
         "led_priv.h": "c",
         "led_config.h": "c",
-        "led_int.h": "c"
+        "led_int.h": "c",
+        "seven_segement_config.h": "c"
     }
 }
