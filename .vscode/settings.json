@@ -14,6 +14,7 @@
         "led_int.h": "c",
         "seven_segement_config.h": "c",
         "ss_lt_config.h": "c",
-        "ss_lt_priv.h": "c"
+        "ss_lt_priv.h": "c",
+        "lcd_config.h": "c"
     }
 }

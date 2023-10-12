@@ -1,0 +1,15 @@
+#ifndef LCD_PRIV_H_
+#define LCD_PRIV_H_
+#include "../../LIB/stdTypes.h"
+#include "../../LIB/errorStates.h"
+
+#define EightBitMode 0
+#define FourBitMode  1
+
+#define ON_OFF 0x0f
+#define CLEAR  0x01
+#define EntrySetMode 0x06
+
+static inline void LCD_invidSendCommand(u8 Copy_u8Command);
+static  void LCD_Latch(u8 Copy_u8Data);
+#endif /* LCD_PRIV_H_ */
