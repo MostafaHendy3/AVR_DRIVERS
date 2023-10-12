@@ -3,7 +3,7 @@ Archive member included to satisfy reference by file (symbol)
 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
                               c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega32.o (exit)
 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
-                              C:\Users\MRHEND~1\AppData\Local\Temp\ccTwa1Xq.o (__do_copy_data)
+                              C:\Users\MRHEND~1\AppData\Local\Temp\cckzCbIv.o (__do_copy_data)
 
 Memory Configuration
 
@@ -20,15 +20,15 @@ user_signatures  0x0000000000850000 0x0000000000000400 rw !x
 Linker script and memory map
 
 LOAD c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega32.o
-LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccTwa1Xq.o
-LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccOtx2X8.o
-LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccbVOgeY.o
-LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccKOX6uR.o
-LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccjwCwCR.o
-LOAD C:\Users\MRHEND~1\AppData\Local\Temp\cc6s5rgW.o
-LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccQRzin5.o
-LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccO7zFij.o
-LOAD C:\Users\MRHEND~1\AppData\Local\Temp\cco7pADA.o
+LOAD C:\Users\MRHEND~1\AppData\Local\Temp\cckzCbIv.o
+LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccWiq0GQ.o
+LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccoXpFre.o
+LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccYxfBwH.o
+LOAD C:\Users\MRHEND~1\AppData\Local\Temp\cc21DEFi.o
+LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccIXkveU.o
+LOAD C:\Users\MRHEND~1\AppData\Local\Temp\cc8sgajG.o
+LOAD C:\Users\MRHEND~1\AppData\Local\Temp\ccIPOGlx.o
+LOAD C:\Users\MRHEND~1\AppData\Local\Temp\cc2tU1wu.o
 START GROUP
 LOAD c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a
 LOAD c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5\libm.a
@@ -135,7 +135,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000      0xaaa
+.text           0x0000000000000000      0xadc
  *(.vectors)
  .vectors       0x0000000000000000       0x54 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega32.o
                 0x0000000000000000                __vector_default
@@ -213,8 +213,8 @@ END GROUP
                 0x000000000000007e                __vector_16
                 0x000000000000007e                __vector_18
                 0x000000000000007e                __vector_20
- .text          0x0000000000000082        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccTwa1Xq.o
- .text          0x0000000000000082      0x240 C:\Users\MRHEND~1\AppData\Local\Temp\ccOtx2X8.o
+ .text          0x0000000000000082        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cckzCbIv.o
+ .text          0x0000000000000082      0x240 C:\Users\MRHEND~1\AppData\Local\Temp\ccWiq0GQ.o
                 0x0000000000000082                DIO_enuInit
                 0x000000000000009c                DIO_enuSetPortDirection
                 0x00000000000000c6                DIO_enuSetPortValue
@@ -224,65 +224,67 @@ END GROUP
                 0x00000000000001cc                DIO_enuSetPinValue
                 0x000000000000022e                DIO_enuTogPinValue
                 0x0000000000000278                DIO_enuGetPinValue
- .text          0x00000000000002c2      0x250 C:\Users\MRHEND~1\AppData\Local\Temp\ccbVOgeY.o
+ .text          0x00000000000002c2      0x268 C:\Users\MRHEND~1\AppData\Local\Temp\ccoXpFre.o
                 0x0000000000000418                LCD_enuInit
                 0x00000000000004da                LCD_enuDisplayChar
                 0x00000000000004f6                LCD_enuSendCommand
- .text          0x0000000000000512        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccKOX6uR.o
- .text          0x0000000000000512       0xb8 C:\Users\MRHEND~1\AppData\Local\Temp\ccjwCwCR.o
-                0x0000000000000512                LED_Init
-                0x000000000000057a                LED_SetLedOn
-                0x00000000000005a2                LED_SetLedOff
- .text          0x00000000000005ca        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cc6s5rgW.o
- .text          0x00000000000005ca      0x426 C:\Users\MRHEND~1\AppData\Local\Temp\ccQRzin5.o
-                0x00000000000005ca                SevenSegement_Init
-                0x0000000000000666                SevenSegement_enuDisplayNum
-                0x0000000000000836                SevenSegement_enuEnableCommon
-                0x000000000000086c                SevenSegement_enuDisableCommon
-                0x00000000000008a2                SevenSegement_enuEnableDot
-                0x00000000000008d8                SevenSegement_enuDisableDot
-                0x000000000000090e                SevenSegement_enuClear
- .text          0x00000000000009f0        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccO7zFij.o
- .text          0x00000000000009f0       0x5a C:\Users\MRHEND~1\AppData\Local\Temp\cco7pADA.o
-                0x00000000000009f0                Switch_enuInit
-                0x0000000000000a30                Switch_enuGetState
- .text          0x0000000000000a4a        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
- .text          0x0000000000000a4a        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
-                0x0000000000000a4a                . = ALIGN (0x2)
+                0x0000000000000512                LCD_enuClear
+                0x000000000000051e                LCD_enuGoHome
+ .text          0x000000000000052a        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccYxfBwH.o
+ .text          0x000000000000052a       0xb8 C:\Users\MRHEND~1\AppData\Local\Temp\cc21DEFi.o
+                0x000000000000052a                LED_Init
+                0x0000000000000592                LED_SetLedOn
+                0x00000000000005ba                LED_SetLedOff
+ .text          0x00000000000005e2        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccIXkveU.o
+ .text          0x00000000000005e2      0x426 C:\Users\MRHEND~1\AppData\Local\Temp\cc8sgajG.o
+                0x00000000000005e2                SevenSegement_Init
+                0x000000000000067e                SevenSegement_enuDisplayNum
+                0x000000000000084e                SevenSegement_enuEnableCommon
+                0x0000000000000884                SevenSegement_enuDisableCommon
+                0x00000000000008ba                SevenSegement_enuEnableDot
+                0x00000000000008f0                SevenSegement_enuDisableDot
+                0x0000000000000926                SevenSegement_enuClear
+ .text          0x0000000000000a08        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccIPOGlx.o
+ .text          0x0000000000000a08       0x5a C:\Users\MRHEND~1\AppData\Local\Temp\cc2tU1wu.o
+                0x0000000000000a08                Switch_enuInit
+                0x0000000000000a48                Switch_enuGetState
+ .text          0x0000000000000a62        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+ .text          0x0000000000000a62        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x0000000000000a62                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x0000000000000a4a       0x5c C:\Users\MRHEND~1\AppData\Local\Temp\ccTwa1Xq.o
-                0x0000000000000a4a                main
+ .text.startup  0x0000000000000a62       0x76 C:\Users\MRHEND~1\AppData\Local\Temp\cckzCbIv.o
+                0x0000000000000a62                main
  .text.libgcc.mul
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.div
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.fixed
-                0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
-                0x0000000000000aa6                . = ALIGN (0x2)
+                0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x0000000000000ad8                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000000000000aa6        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
-                0x0000000000000aa6                _exit
-                0x0000000000000aa6                exit
+ .fini9         0x0000000000000ad8        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x0000000000000ad8                _exit
+                0x0000000000000ad8                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -301,33 +303,33 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000000000000aa6        0x4 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000000000000ad8        0x4 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000000000000aaa                _etext = .
+                0x0000000000000adc                _etext = .
 
-.data           0x0000000000800060       0x4a load address 0x0000000000000aaa
+.data           0x0000000000800060       0x4a load address 0x0000000000000adc
                 0x0000000000800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800060        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega32.o
- .data          0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccTwa1Xq.o
- .data          0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccOtx2X8.o
- .data          0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccbVOgeY.o
- .data          0x0000000000800060        0x8 C:\Users\MRHEND~1\AppData\Local\Temp\ccKOX6uR.o
+ .data          0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cckzCbIv.o
+ .data          0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccWiq0GQ.o
+ .data          0x0000000000800060        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccoXpFre.o
+ .data          0x0000000000800060        0x8 C:\Users\MRHEND~1\AppData\Local\Temp\ccYxfBwH.o
                 0x0000000000800060                LED_AstrLEDState
- .data          0x0000000000800068        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccjwCwCR.o
- .data          0x0000000000800068       0x26 C:\Users\MRHEND~1\AppData\Local\Temp\cc6s5rgW.o
+ .data          0x0000000000800068        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cc21DEFi.o
+ .data          0x0000000000800068       0x26 C:\Users\MRHEND~1\AppData\Local\Temp\ccIXkveU.o
                 0x0000000000800068                SS_LT_AstrConfig
- .data          0x000000000080008e        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccQRzin5.o
- .data          0x000000000080008e        0x9 C:\Users\MRHEND~1\AppData\Local\Temp\ccO7zFij.o
+ .data          0x000000000080008e        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cc8sgajG.o
+ .data          0x000000000080008e        0x9 C:\Users\MRHEND~1\AppData\Local\Temp\ccIPOGlx.o
                 0x000000000080008e                Switch_AstrSwitchState
- .data          0x0000000000800097        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cco7pADA.o
+ .data          0x0000000000800097        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cc2tU1wu.o
  .data          0x0000000000800097        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .data          0x0000000000800097        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  *(.data*)
  *(.gnu.linkonce.d*)
  *(.rodata)
- .rodata        0x0000000000800097        0x8 C:\Users\MRHEND~1\AppData\Local\Temp\ccTwa1Xq.o
- .rodata        0x000000000080009f        0xa C:\Users\MRHEND~1\AppData\Local\Temp\ccQRzin5.o
+ .rodata        0x0000000000800097        0x8 C:\Users\MRHEND~1\AppData\Local\Temp\cckzCbIv.o
+ .rodata        0x000000000080009f        0xa C:\Users\MRHEND~1\AppData\Local\Temp\cc8sgajG.o
  *(.rodata*)
  *(.gnu.linkonce.r*)
                 0x00000000008000aa                . = ALIGN (0x2)
@@ -339,22 +341,22 @@ END GROUP
                 [!provide]                        PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00000000008000aa        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega32.o
- .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccTwa1Xq.o
- .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccOtx2X8.o
- .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccbVOgeY.o
- .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccKOX6uR.o
- .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccjwCwCR.o
- .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cc6s5rgW.o
- .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccQRzin5.o
- .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccO7zFij.o
- .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cco7pADA.o
+ .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cckzCbIv.o
+ .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccWiq0GQ.o
+ .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccoXpFre.o
+ .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccYxfBwH.o
+ .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cc21DEFi.o
+ .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccIXkveU.o
+ .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cc8sgajG.o
+ .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\ccIPOGlx.o
+ .bss           0x00000000008000aa        0x0 C:\Users\MRHEND~1\AppData\Local\Temp\cc2tU1wu.o
  .bss           0x00000000008000aa        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .bss           0x00000000008000aa        0x0 c:/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  *(.bss*)
  *(COMMON)
                 [!provide]                        PROVIDE (__bss_end, .)
-                0x0000000000000aaa                __data_load_start = LOADADDR (.data)
-                0x0000000000000af4                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000000000000adc                __data_load_start = LOADADDR (.data)
+                0x0000000000000b26                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00000000008000aa        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
@@ -402,16 +404,16 @@ END GROUP
 
 .comment        0x0000000000000000       0x30
  *(.comment)
- .comment       0x0000000000000000       0x30 C:\Users\MRHEND~1\AppData\Local\Temp\ccTwa1Xq.o
+ .comment       0x0000000000000000       0x30 C:\Users\MRHEND~1\AppData\Local\Temp\cckzCbIv.o
                                          0x31 (size before relaxing)
- .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccOtx2X8.o
- .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccbVOgeY.o
- .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccKOX6uR.o
- .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccjwCwCR.o
- .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\cc6s5rgW.o
- .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccQRzin5.o
- .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccO7zFij.o
- .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\cco7pADA.o
+ .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccWiq0GQ.o
+ .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccoXpFre.o
+ .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccYxfBwH.o
+ .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\cc21DEFi.o
+ .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccIXkveU.o
+ .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\cc8sgajG.o
+ .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\ccIPOGlx.o
+ .comment       0x0000000000000030       0x31 C:\Users\MRHEND~1\AppData\Local\Temp\cc2tU1wu.o
 
 .note.gnu.avr.deviceinfo
                 0x0000000000000000       0x3c

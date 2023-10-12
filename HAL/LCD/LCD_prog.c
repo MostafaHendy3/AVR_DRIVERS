@@ -115,3 +115,15 @@ static void LCD_Latch(u8 Copy_u8Data)
     // set E to low
     DIO_enuSetPinValue(E_PORT, E_PIN, DIO_u8LOW);
 }
+
+ES_t LCD_enuClear(void){
+    ES_t Local_enuErrorState = ES_NOK;
+    LCD_invidSendCommand(CLEAR);
+    return Local_enuErrorState;
+}
+ES_t LCD_enuGoHome(void){
+    ES_t Local_enuErrorState = ES_NOK;
+    LCD_invidSendCommand(HOME_Command);
+    return Local_enuErrorState;
+}
+

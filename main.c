@@ -36,6 +36,9 @@ int main()
     }
     LCD_enuSendCommand(0x80);
     LCD_enuDisplayChar(0);
+    _delay_ms(1000);
+    LCD_enuClear();
+    LCD_enuGoHome();
     while (1)
     {
     }
