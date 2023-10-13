@@ -17,6 +17,6 @@
 #define KEYPAD_ROW_PIN3		DIO_u8PIN7
 
 #define KEYPAD_NO_PRESSED_KEY		0xFF
-#define KPD_ARY_VAL    {{'7','8','9','/'},{'4','5','6','*'},{'1','2','3','-'},{'%','0','=','+'}}
+#define KPD_ARY_VAL    {{'7','8','9','/'},{'4','5','6','*'},{'1','2','3','-'},{'C','0','=','+'}}
 
 #endif /* KEYPAD_CONFIG_H_ */
