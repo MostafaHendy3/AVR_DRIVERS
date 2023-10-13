@@ -8,6 +8,8 @@
 #include "../HAL/KEYPAD/KEYPAD_config.h"
 #include "APP_priv.h"
 #include "APP_config.h"
+#include <util/delay.h>
+
 u32 Global_u32Operand1 = 0;
 u32 Global_u32Operand2 = 0;
 u8 Global_u32Operator = 0;
@@ -20,6 +22,8 @@ ES_t APP_enuInit(void)
     ES_t Local_enuErrorState = ES_NOK;
     LCD_enuInit();
     KEYPAD_Init();
+    OpenScreen();
+    _delay_ms(1000);
     LCD_enuClear();
     return Local_enuErrorState;
 }
@@ -92,7 +96,7 @@ ES_t APP_enuStart(void)
             Global_u32Operator = local_u8PressedKey;
         }
     }
-
+    
     return Local_enuErrorState;
 }
 
@@ -110,12 +114,15 @@ static void CalcResult(void)
         Result = Global_u32Operand1 * Global_u32Operand2;
         break;
     case '/':
+        if(Global_u32Operand2 == 0){
+            ErrorScreen();
+            break;
+        }
         Result = Global_u32Operand1 / (f32)Global_u32Operand2;
         break;
     default:
         break;
     }
-    // display result
 }
 static void View_On_Screen(u32 local_u8INT_Part, u32 local_u8FLOAT_Part)
 {
@@ -132,7 +139,7 @@ static void View_On_Screen(u32 local_u8INT_Part, u32 local_u8FLOAT_Part)
     LCD_enuSendCommand(local_line2);
     LCD_enuDisplayChar('.');
     local_line2--;
-    
+
     while (local_u8INT_Part >= 1)
     {
         LCD_enuSendCommand(local_line2);
@@ -151,4 +158,28 @@ static void CLEAR(void)
     Result = 0;
     EqualPressed = 0;
     ClearFlag = 0;
+}
+static void ErrorScreen(void)
+{
+    LCD_enuClear();
+    LCD_enuGoHome();
+    char *Error = "Error";
+    u8 i = 0;
+    while (Error[i] != '\0')
+    {
+        LCD_enuDisplayChar(Error[i]);
+        i++;
+    }
+}
+static void OpenScreen(void)
+{
+    LCD_enuClear();
+    LCD_enuGoHome();
+    char *OPEN = "Hello Calculator";
+    u8 i = 0;
+    while (OPEN[i] != '\0')
+    {
+        LCD_enuDisplayChar(OPEN[i]);
+        i++;
+    }
 }
