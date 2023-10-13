@@ -9,6 +9,8 @@
 #include "HAL/SS_LT/SS_LT_Config.h"
 #include "HAL/LCD/LCD_int.h"
 #include "HAL/LCD/LCD_config.h"
+#include "HAL/KEYPAD/KEYPAD_Int.h"
+#include "HAL/KEYPAD/KEYPAD_config.h"
 
 #include <util/delay.h>
 
@@ -17,29 +19,21 @@
 // extern SEVEN_SEGMENT_t SS_LT_AstrConfig[SEG_NUM];
 int main()
 {
+    
     // array of patterns for custom character on lcd
-    u8 customChar[] = {
-        0B00000,
-        0B00000,
-        0B01010,
-        0B00000,
-        0B10001,
-        0B01110,
-        0B00000,
-        0B00000
-        };
-
     LCD_enuInit();
-    LCD_enuSendCommand(0x40);
-    for(u8 i = 0; i < 8; i++){
-    LCD_enuDisplayChar(customChar[i]);
-    }
+    KEYPAD_Init();
+    
     LCD_enuSendCommand(0x80);
-    LCD_enuDisplayChar(0);
-    _delay_ms(1000);
-    LCD_enuClear();
-    LCD_enuGoHome();
+
+    u8 local_u8PressedKey = KEYPAD_NO_PRESSED_KEY;
+    
     while (1)
     {
+        do{
+            KEYPAD_GetPressedKey(&local_u8PressedKey);
+        }
+        while(local_u8PressedKey == KEYPAD_NO_PRESSED_KEY);
+        LCD_enuDisplayChar(local_u8PressedKey);
     }
 }

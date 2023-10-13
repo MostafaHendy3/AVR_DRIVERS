@@ -15,6 +15,9 @@
         "seven_segement_config.h": "c",
         "ss_lt_config.h": "c",
         "ss_lt_priv.h": "c",
-        "lcd_config.h": "c"
+        "lcd_config.h": "c",
+        "lcd_int.h": "c",
+        "keypad_int.h": "c",
+        "keypad_config.h": "c"
     }
 }
