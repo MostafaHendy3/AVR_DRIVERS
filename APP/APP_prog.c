@@ -132,9 +132,6 @@ static void View_On_Screen(s32 local_u8INT_Part, u32 local_u8FLOAT_Part)
 
     if (local_u8FLOAT_Part == 0)
     {
-        LCD_enuSendCommand(local_line2);
-        LCD_enuDisplayChar('0');
-        local_line2--;
     }
     else
     {
@@ -146,10 +143,11 @@ static void View_On_Screen(s32 local_u8INT_Part, u32 local_u8FLOAT_Part)
             local_u8FLOAT_Part /= 10;
             local_line2--;
         }
+        LCD_enuSendCommand(local_line2);
+        LCD_enuDisplayChar('.');
+        local_line2--;
     }
-    LCD_enuSendCommand(local_line2);
-    LCD_enuDisplayChar('.');
-    local_line2--;
+
     if (local_u8INT_Part < 0)
     {
         local_u8INT_Part = -(s32)local_u8INT_Part;
@@ -161,7 +159,6 @@ static void View_On_Screen(s32 local_u8INT_Part, u32 local_u8FLOAT_Part)
             local_u8INT_Part /= 10;
             local_line2--;
         }
-        local_line2--;
         LCD_enuSendCommand(local_line2);
         LCD_enuDisplayChar('-');
         local_line2--;
