@@ -10,11 +10,11 @@
 #include "APP_config.h"
 #include <util/delay.h>
 
-u32 Global_u32Operand1 = 0;
-u32 Global_u32Operand2 = 0;
+s32 Global_u32Operand1 = 0;
+s32 Global_u32Operand2 = 0;
 u8 Global_u32Operator = 0;
 f32 Result = 0;
-u8 EqualPressed = 0;
+u8 EqualPressed = Equal_NOT_Pressed;
 u8 ClearFlag = 0;
 
 ES_t APP_enuInit(void)
@@ -25,6 +25,7 @@ ES_t APP_enuInit(void)
     OpenScreen();
     _delay_ms(1000);
     LCD_enuClear();
+    Local_enuErrorState = ES_OK;
     return Local_enuErrorState;
 }
 ES_t APP_enuStart(void)
@@ -33,16 +34,16 @@ ES_t APP_enuStart(void)
 
     u8 local_u8PressedKey;
 
-    while (EqualPressed == 0)
+    while (EqualPressed == Equal_NOT_Pressed)
     {
         do
         {
-            KEYPAD_GetPressedKey(&local_u8PressedKey);
+            Local_enuErrorState = KEYPAD_GetPressedKey(&local_u8PressedKey);
         } while (local_u8PressedKey == KEYPAD_NO_PRESSED_KEY);
         // check if the pressed key is equal
         if (local_u8PressedKey == '=')
         {
-            LCD_enuDisplayChar(local_u8PressedKey);
+            Local_enuErrorState = LCD_enuDisplayChar(local_u8PressedKey);
             CalcResult();
             View_On_Screen(Result, (Result - (u32)Result) * 1000);
             CLEAR();
@@ -74,29 +75,29 @@ ES_t APP_enuStart(void)
 
                 Global_u32Operand2 = Global_u32Operand2 * 10 + (local_u8PressedKey - '0');
             }
-            LCD_enuDisplayChar(local_u8PressedKey);
+            Local_enuErrorState = LCD_enuDisplayChar(local_u8PressedKey);
         }
         // check if the pressed key is Clear
-        else if (local_u8PressedKey == 'C')
+        else if (local_u8PressedKey == CLEARPressed)
         {
-            LCD_enuClear();
+            Local_enuErrorState = LCD_enuClear();
             CLEAR();
         }
         // check if the pressed key is an operator
         else
         {
-            LCD_enuDisplayChar(local_u8PressedKey);
+            Local_enuErrorState = LCD_enuDisplayChar(local_u8PressedKey);
             /*Clear Past operation*/
             if (ClearFlag == 1)
             {
                 LCD_enuClear();
                 ClearFlag = 0;
             }
-            EqualPressed = 0;
+            EqualPressed = Equal_NOT_Pressed;
             Global_u32Operator = local_u8PressedKey;
         }
     }
-    
+
     return Local_enuErrorState;
 }
 
@@ -114,7 +115,8 @@ static void CalcResult(void)
         Result = Global_u32Operand1 * Global_u32Operand2;
         break;
     case '/':
-        if(Global_u32Operand2 == 0){
+        if (Global_u32Operand2 == 0)
+        {
             ErrorScreen();
             break;
         }
@@ -124,28 +126,56 @@ static void CalcResult(void)
         break;
     }
 }
-static void View_On_Screen(u32 local_u8INT_Part, u32 local_u8FLOAT_Part)
+static void View_On_Screen(s32 local_u8INT_Part, u32 local_u8FLOAT_Part)
 {
     u8 local_line2 = 0xCF;
 
-    while (local_u8FLOAT_Part >= 1)
+    if (local_u8FLOAT_Part == 0)
     {
         LCD_enuSendCommand(local_line2);
-        u32 digit1 = local_u8FLOAT_Part % 10;
-        LCD_enuDisplayChar(digit1 + '0'); // Print the digit
-        local_u8FLOAT_Part /= 10;
+        LCD_enuDisplayChar('0');
         local_line2--;
+    }
+    else
+    {
+        while (local_u8FLOAT_Part != 0)
+        {
+            LCD_enuSendCommand(local_line2);
+            u32 digit1 = local_u8FLOAT_Part % 10;
+            LCD_enuDisplayChar(digit1 + '0'); // Print the digit
+            local_u8FLOAT_Part /= 10;
+            local_line2--;
+        }
     }
     LCD_enuSendCommand(local_line2);
     LCD_enuDisplayChar('.');
     local_line2--;
-
-    while (local_u8INT_Part >= 1)
+    if (local_u8INT_Part < 0)
     {
+        local_u8INT_Part = -(s32)local_u8INT_Part;
+        while (local_u8INT_Part != 0)
+        {
+            LCD_enuSendCommand(local_line2);
+            s32 digit1 = (local_u8INT_Part % 10);
+            LCD_enuDisplayChar(digit1 + '0'); // Print the digit
+            local_u8INT_Part /= 10;
+            local_line2--;
+        }
+        local_line2--;
         LCD_enuSendCommand(local_line2);
-        u32 digit = local_u8INT_Part % 10;
-        LCD_enuDisplayChar(digit + '0'); // Print the digit
-        local_u8INT_Part /= 10;
+        LCD_enuDisplayChar('-');
+        local_line2--;
+    }
+    else
+    {
+        while (local_u8INT_Part != 0)
+        {
+            LCD_enuSendCommand(local_line2);
+            u32 digit1 = local_u8INT_Part % 10;
+            LCD_enuDisplayChar(digit1 + '0'); // Print the digit
+            local_u8INT_Part /= 10;
+            local_line2--;
+        }
         local_line2--;
     }
     LCD_enuGoHome();
@@ -156,7 +186,7 @@ static void CLEAR(void)
     Global_u32Operand2 = 0;
     Global_u32Operator = 0;
     Result = 0;
-    EqualPressed = 0;
+    EqualPressed = Equal_NOT_Pressed;
     ClearFlag = 0;
 }
 static void ErrorScreen(void)
