@@ -3,7 +3,6 @@
 
 #include "EXTI_priv.h"
 #include "EXTI_config.h"
-#include "Interrupt.h"
 // pointer to 2d array of void functions
 
 static volatile void(*EXTI_Pfun[3][2]) = {{NULL, NULL}, {NULL, NULL}, {NULL, NULL}};
