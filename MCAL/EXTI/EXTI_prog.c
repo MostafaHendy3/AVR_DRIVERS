@@ -3,6 +3,7 @@
 
 #include "EXTI_priv.h"
 #include "EXTI_config.h"
+#include "../Intterupt.h"
 //static volatile void(*EXTI_Pfun[3][2]) = {{NULL, NULL}, {NULL, NULL}, {NULL, NULL}};
 static volatile void(*EXTI_Pfun[3])(volatile void *ptr) = {NULL, NULL, NULL};
 static volatile void *EXTI_PfunArg[3] = {NULL, NULL, NULL};

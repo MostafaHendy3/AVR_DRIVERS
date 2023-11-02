@@ -3,7 +3,7 @@
 
 #include "ADC_priv.h"
 #include "ADC_config.h"
-#include "../EXTI/EXTI_priv.h"
+#include "../Intterupt.h"
 static void (*ADC_pfunISRFunction)(void *) =NULL;
 static void *ADC_pvidISRParameter= NULL;
 ES_t ADC_enuInit(void)
