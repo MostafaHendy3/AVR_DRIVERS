@@ -3,7 +3,9 @@
 
 #include "EXTI_priv.h"
 #include "EXTI_config.h"
-static volatile void(*EXTI_Pfun[3][2]) = {{NULL, NULL}, {NULL, NULL}, {NULL, NULL}};
+//static volatile void(*EXTI_Pfun[3][2]) = {{NULL, NULL}, {NULL, NULL}, {NULL, NULL}};
+static volatile void(*EXTI_Pfun[3])(volatile void *ptr) = {NULL, NULL, NULL};
+static volatile void *EXTI_PfunArg[3] = {NULL, NULL, NULL};
 
 ES_t EXTI_enuInit(EXTI_t *Copy_pstrEXTI)
 {
@@ -211,15 +213,15 @@ ES_t EXTI_enuSetSenseMode(u8 Copy_u8EXTI_INDEX, u8 Copy_u8SenseMode)
 
     return Local_enuErrorState;
 }
-ES_t EXTI_enuSetCallBack(u8 Copy_u8EXTI_INDEX, void *Copy_pvCallBack, void *Copy_pvCallBackArg)
+ES_t EXTI_enuSetCallBack(u8 Copy_u8EXTI_INDEX, volatile  void *Copy_pvCallBack, void *Copy_pvCallBackArg)
 {
     ES_t Local_enuErrorState = ES_NOK;
     if (Copy_u8EXTI_INDEX < 3)
     {
-        if (Copy_pvCallBack != NULL && Copy_pvCallBackArg != NULL)
+        if (Copy_pvCallBack != NULL)
         {
-            EXTI_Pfun[Copy_u8EXTI_INDEX][0] = Copy_pvCallBack;
-            EXTI_Pfun[Copy_u8EXTI_INDEX][1] = Copy_pvCallBackArg;
+            EXTI_Pfun[Copy_u8EXTI_INDEX] = Copy_pvCallBack;
+            EXTI_PfunArg[Copy_u8EXTI_INDEX] = Copy_pvCallBackArg;
         }
     }
     else
@@ -231,23 +233,22 @@ ES_t EXTI_enuSetCallBack(u8 Copy_u8EXTI_INDEX, void *Copy_pvCallBack, void *Copy
 }
 ISR(VECT_INT0)
 {
-    if (EXTI_Pfun[0][0] != NULL)
+    if (EXTI_PfunArg[0] != NULL && EXTI_Pfun[0] != NULL)
     {
-        
-        ((void (*)(u8))EXTI_Pfun[0][0])(*(u8 *)EXTI_Pfun[0][1]);
+        (EXTI_Pfun[0])(EXTI_PfunArg[0]);
     }
 }
 ISR(VECT_INT1)
 {
     if (EXTI_Pfun[1] != NULL)
     {
-        ((void (*)(u8))EXTI_Pfun[1][0])(*(u8 *)EXTI_Pfun[1][1]);
+        (EXTI_Pfun[1])(EXTI_PfunArg[1]);
     }
 }
 ISR(VECT_INT2)
 {
     if (EXTI_Pfun[2] != NULL)
     {
-        ((void (*)(u8))EXTI_Pfun[2][0])( *(u8 *) EXTI_Pfun[2][1]);
+        (EXTI_Pfun[2])(EXTI_PfunArg[2]);
     }
 }

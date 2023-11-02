@@ -30,6 +30,11 @@
 #define  VECT_INT0  __vector_1
 #define  VECT_INT1  __vector_2
 #define  VECT_INT2  __vector_3
-
+#define  VECT_INT3  __vector_4
+#define  VECT_INT4  __vector_5
+#define  VECT_INT5  __vector_6
+#define  VECT_INT6  __vector_7
+#define  VECT_INT7  __vector_8
+#define ADC_vect    __vector_16
 
 #endif /* EXTI_PRIV_H_ */
