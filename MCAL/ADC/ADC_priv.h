@@ -26,7 +26,7 @@
 #define Single_Ended_Input 0
 #define Differential_Input 1
 
-#define AREF       0
+#define AREF       2
 #define AVCC       1
 #define INTERNAL   3
 

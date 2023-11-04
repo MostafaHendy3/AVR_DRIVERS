@@ -1,21 +1,24 @@
 #include "../../LIB/stdTypes.h"
 #include "../../LIB/errorStates.h"
 
-#include "ADC_priv.h"
+
 #include "ADC_config.h"
+#include "ADC_priv.h"
+
 #include "../Intterupt.h"
 static void (*ADC_pfunISRFunction)(void *) =NULL;
 static void *ADC_pvidISRParameter= NULL;
 ES_t ADC_enuInit(void)
 {
+        
         ES_t Local_enuErrorState = ES_NOK;
-        #if REF_VOLTAGE == AVCC 
+        #if ADC_REF_VOLTAGE == AVCC 
                 ADMUX |= (1 << REFS0);
                 ADMUX &= ~(1 << REFS1);
-        #elif REF_VOLTAGE == AREF 
+        #elif ADC_REF_VOLTAGE == AREF 
                 ADMUX &= ~(1 << REFS0);
                 ADMUX &= ~(1 << REFS1);
-        #elif REF_VOLTAGE == INTERNAL 
+        #elif ADC_REF_VOLTAGE == INTERNAL 
                 ADMUX |= (1 << REFS0);
                 ADMUX |= (1 << REFS1);
         #else 
@@ -148,7 +151,7 @@ ES_t ADC_enuSelectChannel(u8 copy_u8channelID)
         }
         else
         {
-                ADMUX &= 0xE0;
+                ADMUX &= ~ 0x1F;
                 ADMUX |= copy_u8channelID;
                 Local_enuErrorState = ES_OK;
         }

@@ -18,4 +18,13 @@ ES_t ADC_enuSelectChannel(u8 copy_u8channelID);
 ES_t ADC_enuEnableTriggeringMode(u8 copy_u8TriggerSource);
 ES_t ADC_enuDisableTriggeringMode(void);
 
+#define FREE_RUNNING_MODE 0
+#define ANALOG_COMPARATOR 1
+#define EXTERNAL_INTERRUPT_REQUEST_0 2
+#define TIMER_COUNTER0_COMPARE_MATCH 3
+#define TIMER_COUNTER0_OVERFLOW 4
+#define TIMER_COUNTER1_COMPARE_MATCH_B 5
+#define TIMER_COUNTER1_OVERFLOW 6
+#define TIMER_COUNTER1_CAPTURE_EVENT 7
+
 #endif /* ADC_INT_H_ */
