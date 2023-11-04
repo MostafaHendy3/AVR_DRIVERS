@@ -18,6 +18,16 @@
         "lcd_config.h": "c",
         "lcd_int.h": "c",
         "keypad_int.h": "c",
-        "keypad_config.h": "c"
+        "keypad_config.h": "c",
+        "exti_priv.h": "c",
+        "exti_config.h": "c",
+        "gie_priv.h": "c",
+        "gie_config.h": "c",
+        "interrupt.h": "c",
+        "exti_int.h": "c",
+        "ht66f489.h": "c",
+        "adc_config.h": "c",
+        "adc_priv.h": "c",
+        "adc_int.h": "c"
     }
 }
