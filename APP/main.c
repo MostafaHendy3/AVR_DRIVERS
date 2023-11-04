@@ -29,7 +29,6 @@ int main()
     EXTI_enuInit(EXTI_tConfig);
     EXTI_enuSetSenseMode(EXTI_u8INT0,EXTI_u8FALLING_EDGE);
     EXTI_enuEnableINT(EXTI_u8INT0);
-
     ADC_enuEnableADC();
     ADC_enuSelectChannel(2);
     ADC_enuEnableTriggeringMode(EXTERNAL_INTERRUPT_REQUEST_0);
