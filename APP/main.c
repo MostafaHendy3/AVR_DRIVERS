@@ -9,12 +9,10 @@
 #include "../HAL/LCD/LCD_config.h"
 #include "../HAL/LCD/LCD_Int.h"
 
-volatile void func(void *state);
-volatile void func1(u8 local_state);
-volatile void func2(u8 local_state);
+#include "../HAL/lm35/lm35_int.h"
 
 #include <util/delay.h>
-extern EXTI_t EXTI_tConfig[3];
+//extern EXTI_t EXTI_tConfig[3];
 
 //chain of ADC DATA
 u8 adcResults[4]={0,0,0,0};
@@ -45,31 +43,35 @@ void read(void *p)
 
 int main()
 {
-    GIE_voidEnable();
+    u8 lm35 = 0;
+    LM35_Init();
     LCD_enuInit();
-    LCD_enuGoHome();
-    ADC_enuInit();
-    ADC_enuEnableADC();    
-    GIE_voidEnable();
+    LCD_enuClear();
     /*
         ADC * 
     */
     while (1)
     {
-           
-    // Asynchronous    
-    //ADC_enuStartConversion_ASync(0,&readings,&read,(void *)&readings);
-    
-    // Chain of ADC
-     ADC_enuStartChainConversion(&ADC_chain,4,&chain_read,(void *)&adcResults);
-
-    // Synchronous
-    // ADC_enuStartConversion_Sync(0,&readings);
-    // DIO_enuSetPortDirection(DIO_u8PORTB, 0xff);
-    // LCD_enuDisplayIntegerNumber(readings);
+        LM35_GetTemp(&lm35);
+        LCD_enuGoHome();
+        LCD_enuDisplayIntegerNumber(lm35);
+   
     
     }
 
     
 }
 
+/* ADC 
+     // Asynchronous    
+    //ADC_enuStartConversion_ASync(0,&readings,&read,(void *)&readings);
+    
+    // Chain of ADC
+    // ADC_enuStartChainConversion(&ADC_chain,4,&chain_read,(void *)&adcResults);
+
+    // Synchronous
+    // ADC_enuStartConversion_Sync(0,&readings);
+    // DIO_enuSetPortDirection(DIO_u8PORTB, 0xff);
+    // LCD_enuDisplayIntegerNumber(readings);
+
+*/
