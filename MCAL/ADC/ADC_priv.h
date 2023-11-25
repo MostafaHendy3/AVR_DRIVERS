@@ -1,11 +1,14 @@
 #ifndef ADC_PRIV_H_
 #define ADC_PRIV_H_
 
-#define ADCH    *((volatile u16 *)0x24)
-#define ADCL    *((volatile u16 *)0x25)
+#define ADCH    *((volatile u8 *)0x25)
+#define ADCL    *((volatile u8 *)0x24)
 #define ADCSRA      *((u8 *)0x26)
 #define ADMUX       *((u8 *)0x27)
 #define SFIOR       *((u8 *)0x50)
+
+#define IDLE 0
+#define BUSY 1
 
 #define FREE_RUNNING_MODE 0
 #define ANALOG_COMPARATOR 1
@@ -65,6 +68,10 @@
 #define ADC6       6
 #define ADC7       7
 
-
+typedef struct 
+{
+    u8 u8ADC_ChannelID;
+    u8 * arr_result;
+}ADC_chain_t;
 
 #endif /* ADC_PRIV_H_ */

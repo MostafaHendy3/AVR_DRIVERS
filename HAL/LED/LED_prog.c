@@ -6,7 +6,7 @@
 #include "LED_config.h"
 #include "LED_priv.h"
 
-ES_t LED_Init(LED_t *Copy_PAstrLEDState)
+ES_t LED_enuInit(LED_t *Copy_PAstrLEDState)
 {
     ES_t Local_enuErrorState = ES_NOK;
     if (Copy_PAstrLEDState != NULL)
@@ -57,7 +57,7 @@ ES_t LED_Init(LED_t *Copy_PAstrLEDState)
     }
     return Local_enuErrorState;
 }
-ES_t LED_SetLedOn(LED_t *Copy_PstrLEDID)
+ES_t LED_enuSetLedOn(LED_t *Copy_PstrLEDID)
 {
     ES_t Local_enuErrorState = ES_NOK;
     if (Copy_PstrLEDID != NULL)
@@ -81,7 +81,7 @@ ES_t LED_SetLedOn(LED_t *Copy_PstrLEDID)
     }
     return Local_enuErrorState;
 }
-ES_t LED_SetLedOff(LED_t *Copy_PstrLEDID)
+ES_t LED_enuSetLedOff(LED_t *Copy_PstrLEDID)
 {
     ES_t Local_enuErrorState = ES_NOK;
     if (Copy_PstrLEDID != NULL)

@@ -1,11 +1,9 @@
-
 #include "../../LIB/errorStates.h"
 #include "../../LIB/stdTypes.h"
-
+#include "../../MCAL/DIO/DIO_int.h"
 #include "Switch_priv.h"
 #include "Switch_config.h"
 
-#include "../../MCAL/DIO/DIO_int.h"
 
 ES_t Switch_enuInit(SW_t *Copy_AstrSwitchState)
 {

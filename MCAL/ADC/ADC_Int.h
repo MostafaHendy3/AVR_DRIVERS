@@ -4,8 +4,19 @@
 #include "../../LIB/stdTypes.h"
 #include "../../LIB/errorStates.h"
 
+typedef struct 
+{
+    u8 u8ADC_ChannelID;
+    u8 * arr_result;
+}ADC_chain_t;
+
+
 ES_t ADC_enuInit(void); 
 ES_t ADC_enuStartConversion(void);
+ES_t ADC_enuStartConversion_Sync(u8 Copy_u8Channel,u16 * Result);
+ES_t ADC_enuStartConversion_ASync(u8 Copy_u8Channel,u8 * Reading,void (*Copy_pfunCallBack)(void *), void *Copy_pvidParameter);
+ES_t ADC_enuStartChainConversion(ADC_chain_t (*)[4], u8 size, void (*Copy_pfunCallBack)(void *), void *Copy_pvidParameter);
+
 ES_t ADC_enuPollingSystem(void);
 ES_t ADC_enuReadHighValue(u8 * Copy_pu8Value);
 ES_t ADC_enuRead(u16 * Copy_pu16Value);

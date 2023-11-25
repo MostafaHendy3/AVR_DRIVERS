@@ -53,6 +53,24 @@ ES_t LCD_enuDisplayChar(u8 Copy_u8Data)
     LCD_Latch(Copy_u8Data);
     return Local_enuErrorState;
 }
+
+ES_t LCD_enuDisplayIntegerNumber(s32 Copy_s32Num)
+{
+    ES_t Local_enuErrorState =ES_NOK;
+    u8 buffer[10];
+    u8 size =0;
+    DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8HIGH);
+    while(Copy_s32Num!=0){
+        buffer[size]=Copy_s32Num%10;
+        size++;
+        Copy_s32Num/=10;
+    }
+    for(int i =size-1;i>=0;i--){
+        LCD_Latch(buffer[i]+'0');
+    }
+    return Local_enuErrorState;
+}
+
 ES_t LCD_enuSendCommand(u8 Copy_u8Command)
 {
     ES_t Local_enuErrorState = ES_NOK;
@@ -114,16 +132,18 @@ static void LCD_Latch(u8 Copy_u8Data)
     _delay_ms(10);
     // set E to low
     DIO_enuSetPinValue(E_PORT, E_PIN, DIO_u8LOW);
+    _delay_ms(10);
 }
 
-ES_t LCD_enuClear(void){
+ES_t LCD_enuClear(void)
+{
     ES_t Local_enuErrorState = ES_NOK;
     LCD_invidSendCommand(CLEAR);
     return Local_enuErrorState;
 }
-ES_t LCD_enuGoHome(void){
+ES_t LCD_enuGoHome(void)
+{
     ES_t Local_enuErrorState = ES_NOK;
     LCD_invidSendCommand(HOME_Command);
     return Local_enuErrorState;
 }
-
