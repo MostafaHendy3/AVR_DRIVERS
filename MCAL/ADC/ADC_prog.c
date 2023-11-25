@@ -353,14 +353,7 @@ ISR(ADC_vect)
 {
         if (enableChainConversion == 1)
         {
-               if(index == 0){
-                       *ADC_Pchain[0].arr_result = ADCH;
-                        index++;
-                        ADMUX &= ~0x1F;
-                        ADMUX |= ADC_Pchain[index].u8ADC_ChannelID;
-                        ADCSRA |= (1 << ADSC);
-                }
-                else if (index < ADC_chainSize)
+                if (index < ADC_chainSize)
                 {
                         *ADC_Pchain[index].arr_result = ADCH;
                         index++;
