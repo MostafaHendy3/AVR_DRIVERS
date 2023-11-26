@@ -1,9 +1,5 @@
 /*
  * stdTypes.h
- *
- *  Created on	: Mar 31, 2020
- *  Version		: 1.0.0
- *  Author		: Ahmed El-Gaafarwy
  */
 
 #ifndef STDTYPES_H_

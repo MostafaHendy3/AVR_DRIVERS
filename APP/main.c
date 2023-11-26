@@ -5,73 +5,64 @@
 #include "../MCAL/EXTI/EXTI_Int.h"
 #include "../MCAL/GIE/GIE_int.h"
 #include "../MCAL/ADC/ADC_Int.h"
+#include "../MCAL/TIMERS/TIMER_Int.h"
 
 #include "../HAL/LCD/LCD_config.h"
 #include "../HAL/LCD/LCD_Int.h"
-
+#include "../Hal/SS_LT/SS_LT_config.h"
+#include "../Hal/SS_LT/SS_LT_int.h"
 #include "../HAL/lm35/lm35_int.h"
 
 #include <util/delay.h>
-//extern EXTI_t EXTI_tConfig[3];
 
-//chain of ADC DATA
-u8 adcResults[4]={0,0,0,0};
-ADC_chain_t ADC_chain[4] = {{0,&adcResults[0]},
-                                {1,&adcResults[1]},
-                                {2,&adcResults[2]},
-                                {4,&adcResults[3]}};
+/*
+    make two multiplexed seven segement 
+    first display : count up every second
+    second display : Count down Every second  
+    Using Timer0 (Compare Match)
+*/
 
-u8 flag = 0;
-void chain_read(void *p)
-{        
-    LCD_enuGoHome();
-    LCD_enuDisplayIntegerNumber(adcResults[0]);
-    LCD_enuDisplayChar(' ');
-    LCD_enuDisplayIntegerNumber(adcResults[1]);
-    LCD_enuDisplayChar(' ');
-    LCD_enuDisplayIntegerNumber(adcResults[2]);
-    LCD_enuDisplayChar(' ');
-    LCD_enuDisplayIntegerNumber(adcResults[3]);   
-}
+extern SEVEN_SEGMENT_t SS_LT_AstrConfig[SEG_NUM];
+static volatile u8 SevenSegement_CounterUP =0;
+static volatile u8 SevenSegement_CounterDown =9;
+volatile u8 state =0;
 
-u8 readings = 0;
-void read(void *p)
-{        
-    LCD_enuGoHome();
-    LCD_enuDisplayIntegerNumber(*(u8 *)p);  
+void LED(void){
+    static u16 local_u16Counter =0;
+    local_u16Counter++;
+    //Compare match time 250 us
+    //
+    if (local_u16Counter % 40 ==0){
+        if(state == 0){
+            SevenSegement_enuDisableCommon(0);
+            SevenSegement_enuEnableCommon(1);
+            SevenSegement_enuDisplayNum(1,SevenSegement_CounterUP);
+            state =1;
+        }else {
+            SevenSegement_enuDisableCommon(1);
+            SevenSegement_enuEnableCommon(0);
+            SevenSegement_enuDisplayNum(0,SevenSegement_CounterDown);
+            state=0;
+        }
+    }
+    if(local_u16Counter == 4000){
+        SevenSegement_CounterUP++;
+        SevenSegement_CounterDown--;
+        local_u16Counter=0;
+    }
 }
 
 int main()
 {
-    u8 lm35 = 0;
-    LM35_Init();
-    LCD_enuInit();
-    LCD_enuClear();
-    /*
-        ADC * 
-    */
-    while (1)
-    {
-        LM35_GetTemp(&lm35);
-        LCD_enuGoHome();
-        LCD_enuDisplayIntegerNumber(lm35);
-   
-    
-    }
+    SevenSegement_Init(SS_LT_AstrConfig);
+    SevenSegement_enuDisableCommon(0);
+    SevenSegement_enuEnableCommon(1);
 
+    GIE_voidEnable();
+    TIMER0_init();
+    TIMER0_callBack(&LED,NULL);    
+    while (1){
+
+    }
     
 }
-
-/* ADC 
-     // Asynchronous    
-    //ADC_enuStartConversion_ASync(0,&readings,&read,(void *)&readings);
-    
-    // Chain of ADC
-    // ADC_enuStartChainConversion(&ADC_chain,4,&chain_read,(void *)&adcResults);
-
-    // Synchronous
-    // ADC_enuStartConversion_Sync(0,&readings);
-    // DIO_enuSetPortDirection(DIO_u8PORTB, 0xff);
-    // LCD_enuDisplayIntegerNumber(readings);
-
-*/

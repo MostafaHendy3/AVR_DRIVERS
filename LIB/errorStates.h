@@ -1,8 +1,5 @@
 /*
  * errorStates.h
- *
- *  Created on: Sep 7, 2021
- *      Author: Ahmed El-Gaafrawy
  */
 
 #ifndef ERRORSTATES_H_
@@ -14,7 +11,8 @@ typedef enum
 	ES_OK,
 	ES_NULL_POINTER,
 	ES_OUT_OF_RANGE,
-	ES_ERROR_TYPE
+	ES_ERROR_TYPE,
+	ES_BUSY
 }ES_t;
 
 #endif /* ERRORSTATES_H_ */
