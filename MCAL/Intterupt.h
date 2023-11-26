@@ -13,6 +13,9 @@
 #define  VECT_INT5  __vector_6
 #define  VECT_INT6  __vector_7
 #define  VECT_INT7  __vector_8
+#define VECT_TIMER0_COMP  __vector_10
+#define VECT_TIMER0_OVF  __vector_11
+
 #define ADC_vect    __vector_16
 
 #endif /* INTTERUPT_H_ */
