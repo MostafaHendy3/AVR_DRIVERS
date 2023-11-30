@@ -1,7 +1,5 @@
 #ifndef LCD_PRIV_H_
 #define LCD_PRIV_H_
-#include "../../LIB/stdTypes.h"
-#include "../../LIB/errorStates.h"
 
 #define EightBitMode 0
 #define FourBitMode  1

@@ -1,9 +1,6 @@
 #ifndef ADC_INT_H_
 #define ADC_INT_H_
 
-#include "../../LIB/stdTypes.h"
-#include "../../LIB/errorStates.h"
-
 typedef struct 
 {
     u8 u8ADC_ChannelID;
