@@ -18,6 +18,8 @@ MCAL (MICROCONTROLLER ABSTRACTION LAYER):
 - GPIO
 - ADC
 - External Interrupts
+- Timers
+- WDT
 
 HAL (HARDWARE ABSTRACTION LAYER):
 - LCD 
@@ -29,7 +31,7 @@ HAL (HARDWARE ABSTRACTION LAYER):
 
 
 ### future work
-- Timers
+
 - UART
 - SPI
 - I2C
