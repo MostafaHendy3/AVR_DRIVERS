@@ -282,8 +282,7 @@ ES_t TIMER0_enuSetSyncDelay(u32 Copy_u8Time)
         TCNT0 = preload;
         while (NumOVF_int > 0)
         {
-            while (((TIFR >> TOV0) & 1) == 0)
-                ;
+            while (((TIFR >> TOV0) & 1) == 0);
             TIFR |= (1 << TOV0);
             NumOVF_int--;
         }
