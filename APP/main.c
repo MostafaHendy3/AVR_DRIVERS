@@ -34,6 +34,7 @@ int main()
     DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN7,DIO_u8LOW);
     WDT_Enable();
     WDT_Sleep(WDT_SLEEP_1s);
+    WDT_Disable();
     while(1);
     
 }
