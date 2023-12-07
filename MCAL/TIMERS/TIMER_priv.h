@@ -13,8 +13,13 @@
 #define TCCR0_FOC0 7  // force output compare
 #define TCNT0 *((volatile u8 *)0x52)
 #define TIMSK *((volatile u8 *)0x59)
+#define TICIE1 5
+#define OCIE1A 4
+#define OCIE1B 3
+#define TOIE1 2
 #define OCIE0 1 // output compare interrupt enable
 #define TOIE0 0 // overflow interrupt enable
+
 #define NO_INTERRUTP 6
 #define TIFR *((volatile u8 *)0x58)
 #define OCF0 1 // output compare flag
@@ -94,6 +99,7 @@
 #define TCCR1B_CS11 1
 #define TCCR1B_CS12 2
 #define TCCR1B_ICNC1 7
+#define TCCR1B_ICES1 6
 #define TCCR1  *((volatile u8 *)0x4E)
 #define TCNT1H *((volatile u8 *)0x4D)
 #define TCNT1L *((volatile u8 *)0x4C)
@@ -107,7 +113,8 @@
 #define ICR1H  *((volatile u8 *)0x47)
 #define ICR1L  *((volatile u8 *)0x46)
 #define ICR1   *((volatile u16 *)0x46)
-
+#define Rising_edge 0
+#define Falling_edge 1
 
 #define DISCONNECTED 0
 #define CONNECTED 1

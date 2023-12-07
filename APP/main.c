@@ -59,13 +59,12 @@
 extern EXTI_t EXTI_tConfig[3];
 static u16 periodTicks =0;
 static u16 OnTicks =0;
+
 void ICU_SW(){
     static u8 counter =0;
     counter++;
     if(counter == 1){
         TIMER1_SetTimerValue(0);
-                      
-
     }else if (counter == 2){
         TIMER1_GetTimerValue(&periodTicks);
         EXTI_enuSetSenseMode(EXTI_u8INT1,EXTI_u8FALLING_EDGE);
@@ -81,6 +80,25 @@ void ICU_SW(){
     }
     
 }
+
+void ICU_HW(){
+    static u8 local_count =0;
+    static u16 ReadingOne =0;
+    static u16 Readingtwo =0;
+    static u16 Readingthree =0;
+    local_count++;
+    if(local_count==1){
+        ICU_enuReadInputCapture(&ReadingOne);
+    }else if (local_count ==2){
+        ICU_enuReadInputCapture(&Readingtwo);
+        periodTicks =Readingtwo- ReadingOne;
+        ICU_enuSetEdge(Falling_edge);
+    }else if(local_count == 3){
+        ICU_enuReadInputCapture(&Readingthree);
+        OnTicks = Readingthree -Readingtwo;
+        ICU_enuDisableINT();
+    }
+}
 int main()
 {
     DIO_enuInit();
@@ -93,15 +111,20 @@ int main()
     //generate pwm with duty 25 %
     
     GIE_voidDisable();
-    EXTI_enuInit(EXTI_tConfig);
-    DIO_enuSetPinDirection(DIO_u8PORTD,DIO_u8PIN3,DIO_u8INPUT);
-    DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN3,DIO_u8FLOAT);
-    EXTI_enuSetCallBack(EXTI_u8INT1,ICU_SW,NULL);
+    // EXTI_enuInit(EXTI_tConfig);
+    // DIO_enuSetPinDirection(DIO_u8PORTD,DIO_u8PIN3,DIO_u8INPUT);
+    // DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN3,DIO_u8FLOAT);
+    // EXTI_enuSetCallBack(EXTI_u8INT1,ICU_SW,NULL);
     GIE_voidEnable();
     TIMER0_init();
     TIMER1_init();
+    DIO_enuSetPinDirection(DIO_u8PORTD,DIO_u8PIN6,DIO_u8INPUT);
+    DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN6,DIO_u8FLOAT);
+    ICU_Init();
+    ICU_enuSetCallBack(ICU_HW,NULL);
     TIMER1_SetTimerValue(0);
-    TIMER0_GeneratePWM(25);
+    TIMER0_GeneratePWM(1);
+
     while (1){
         while(OnTicks ==0 && periodTicks ==0);
         LCD_enuGoHome();

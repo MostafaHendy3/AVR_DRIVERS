@@ -8,9 +8,12 @@
 
 static void (*TIMER0_callBackPtr)() = NULL;
 static void (*TIMER1_callBackPtr)() = NULL;
+static void (*ICU_callBackPtr)() = NULL;
 
 static void *TIMER0_callBackParameter = NULL;
 static void *TIMER1_callBackParameter = NULL;
+static void *ICU_callBackParameter = NULL;
+
 
 static u32 gNum_OVF = 0;
 static u32 gPreload = 0;
@@ -265,8 +268,6 @@ ES_t TIMER1_init(void)
     return local_errorstate;
 }
 
-
-
 ES_t TIMER0_enuSetSyncDelay(u32 Copy_u8Time)
 {
     ES_t local_errorstate = ES_NOK;
@@ -363,8 +364,6 @@ ES_t TIMER1_callBack(void (*func)(void), void *Copy_pvidParameter)
     }
     return local_errorstate;
 }
-
-
 ES_t TIMER0_GeneratePWM(u8 Copy_u8DutyCycle)
 {
     ES_t local_errorstate = ES_NOK;
@@ -409,6 +408,71 @@ ES_t TIMER1_GetTimerValue(u16 *Copy_pu16Value)
     return local_errorstate;
 }
 
+ES_t ICU_Init(){
+    ES_t localerrorState = ES_NOK;
+    /*Set Trigger to rising edge intially*/    
+    TCCR1B |= (1<<TCCR1B_ICES1);
+    /*Enable ICU Interrupt*/
+    TIMSK |= (1<<TICIE1);
+    return localerrorState;
+}
+ES_t ICU_enuSetEdge(u8 Copy_u8Edge){
+    ES_t localerrorState = ES_NOK;
+if(Copy_u8Edge <= Falling_edge ){
+    if(Copy_u8Edge == Rising_edge){
+        TCCR1B |= (1<<TCCR1B_ICES1);
+    }else if(Copy_u8Edge == Falling_edge){
+        TCCR1B &= ~(1<<TCCR1B_ICES1);
+    }
+}else{
+    localerrorState = ES_OUT_OF_RANGE;
+}
+    return localerrorState;
+}
+ES_t ICU_enuEnableINT(){
+    ES_t localerrorState = ES_NOK;
+
+    /*Enable ICU Interrupt*/
+    TIMSK |= (1<<TICIE1);
+    localerrorState = ES_OK;
+
+    return localerrorState;
+}
+ES_t ICU_enuDisableINT(){
+    ES_t localerrorState = ES_NOK;
+
+    /*Enable ICU Interrupt*/
+    TIMSK &= ~(1<<TICIE1);
+    localerrorState = ES_OK;
+
+    return localerrorState;
+}
+ES_t ICU_enuSetCallBack(void (*func)(void), void *Copy_pvidParameter ){
+    ES_t local_errorstate = ES_NOK;
+    if (func != NULL)
+    {
+        ICU_callBackPtr = func;
+        ICU_callBackParameter = Copy_pvidParameter;
+        local_errorstate = ES_OK;
+    }
+    else
+    {
+        local_errorstate = ES_NULL_POINTER;
+    }
+    return local_errorstate;
+}
+
+ES_t ICU_enuReadInputCapture(u16 * Copy_pu16Value){
+    ES_t local_errorstate =ES_NOK;
+    if(Copy_pu16Value != NULL){
+        *Copy_pu16Value =ICR1;
+        local_errorstate =ES_OK;
+    }else{
+        local_errorstate = ES_NULL_POINTER;
+    }
+    return local_errorstate;
+}
+
 static inline void TIMER0_vidSetCounterValue(u8 Copy_u8Value)
 {
     TCNT0 = Copy_u8Value;
@@ -442,7 +506,10 @@ ISR(VECT_TIMER0_OVF)
     }
 }
 ISR(VECT_TIMER1_CAPT){
-
+     if (ICU_callBackPtr != NULL)
+    {
+        ICU_callBackPtr(ICU_callBackParameter);
+    }
 }
 ISR(VECT_TIMER1_COMPA){
 
