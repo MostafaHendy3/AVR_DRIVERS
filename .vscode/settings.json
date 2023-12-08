@@ -28,6 +28,30 @@
         "ht66f489.h": "c",
         "adc_config.h": "c",
         "adc_priv.h": "c",
-        "adc_int.h": "c"
-    }
+        "adc_int.h": "c",
+        "intterupt.h": "c",
+        "lcd_priv.h": "c",
+        "gie_int.h": "c",
+        "lm35_priv.h": "c",
+        "timer_config.h": "c",
+        "wdt_int.h": "c"
+    },
+    "MicroPython.executeButton": [
+        {
+            "text": "▶",
+            "tooltip": "Run",
+            "alignment": "left",
+            "command": "extension.executeFile",
+            "priority": 3.5
+        }
+    ],
+    "MicroPython.syncButton": [
+        {
+            "text": "$(sync)",
+            "tooltip": "sync",
+            "alignment": "left",
+            "command": "extension.execute",
+            "priority": 4
+        }
+    ]
 }
