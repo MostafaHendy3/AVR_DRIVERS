@@ -278,7 +278,7 @@ ES_t TIMER0_enuSetSyncDelay(u32 Copy_u8Time)
     {
         u32 NumOVF_int = (u32)NumOVF + 1;
         NumOVF = NumOVF - (u32)NumOVF;
-        u8 preload = 256 - (NumOVF * 256);
+        u8 preload = 256 * (1 - NumOVF);
         TCNT0 = preload;
         while (NumOVF_int > 0)
         {
