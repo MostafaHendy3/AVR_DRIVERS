@@ -2,7 +2,7 @@
 #ifndef INTTERUPT_H_
 #define INTTERUPT_H_
 
-#define ISR(VECT)   void VECT(void)__attribute__((signal));\
+#define ISR(VECT)   void VECT(void) __attribute__((signal));\
                     void VECT(void)
 
 #define  VECT_INT0  __vector_1

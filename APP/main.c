@@ -10,6 +10,9 @@
 #include "../MCAL/ADC/ADC_Int.h"
 #include "../MCAL/TIMERS/TIMER_Int.h"
 #include "../MCAL/TIMERS/TIMER_config.h"
+#include "../MCAL/USART/USART_Int.h"
+#include "../MCAL/USART/USART_config.h"
+
 
 #include "../HAL/LCD/LCD_config.h"
 #include "../HAL/LCD/LCD_Int.h"
@@ -22,20 +25,25 @@
 
 
 
+
 extern EXTI_t EXTI_tConfig[3];
 static u16 periodTicks =0;
 static u16 OnTicks =0;
-
+void func(void);
+void ICU_HW(void);
 int main()
 {
-    DIO_enuSetPinDirection(DIO_u8PORTD,DIO_u8PIN7,DIO_u8OUTPUT);
-    DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN7,DIO_u8HIGH);
-    _delay_ms(1000);
-    DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN7,DIO_u8LOW);
-    WDT_Enable();
-    WDT_Sleep(WDT_SLEEP_1s);
-    WDT_Disable();
-    while(1);
+    
+    DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN0,DIO_u8INPUT);
+    DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN1,DIO_u8OUTPUT);
+    USART_enuInit();
+    //send string
+    USART_enuSendString("Welcome");
+    u8 local_data=0;  
+    while (1){
+       USART_enuReceiveChar(&local_data);
+         USART_enuSendChar(local_data);
+    }
     
 }
 
@@ -50,14 +58,12 @@ void ICU_SW(){
         TIMER1_GetTimerValue(&periodTicks);
         EXTI_enuSetSenseMode(EXTI_u8INT1,EXTI_u8FALLING_EDGE);
 
-
     }else if (counter == 3){
         /**/
         TIMER1_GetTimerValue(&OnTicks);
         OnTicks =OnTicks - periodTicks;
         counter =0;
         LCD_enuGoHome();
-        EXTI_enuDisableINT(EXTI_u8INT1);
     }
     
 }
@@ -80,6 +86,34 @@ void ICU_HW(){
         ICU_enuDisableINT();
     }
 }
+
+/* 
+    DIO_enuInit();
+    LCD_enuInit();
+    LCD_enuGoHome();
+    GIE_voidDisable();
+    EXTI_enuInit(EXTI_tConfig);
+    EXTI_enuSetSenseMode(EXTI_u8INT0,EXTI_u8RISING_EDGE);
+    DIO_enuSetPinDirection(DIO_u8PORTD,DIO_u8PIN2,DIO_u8INPUT);
+    DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN2,DIO_u8FLOAT);
+    EXTI_enuSetCallBack(EXTI_u8INT0,ICU_SW,NULL);
+    GIE_voidEnable();
+    TIMER0_init();
+    TIMER1_init();
+    TIMER1_SetTimerValue(0);
+    TIMER0_GeneratePWM(50);
+    while (1){
+        while(OnTicks ==0 && periodTicks ==0);
+        LCD_enuGoHome();
+        LCD_enuDisplayIntegerNumber(OnTicks);
+        LCD_enuDisplayChar(' ');
+        LCD_enuDisplayIntegerNumber(periodTicks);
+        LCD_enuDisplayChar(' ');
+    }
+*/
+
+
+
 /*
 DIO_enuInit();
     LCD_enuInit();

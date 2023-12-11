@@ -5,9 +5,9 @@
 #include "EXTI_config.h"
 #include "../Intterupt.h"
 
-//static volatile void(*EXTI_Pfun[3][2]) = {{NULL, NULL}, {NULL, NULL}, {NULL, NULL}};
-static volatile  void(*EXTI_Pfun[3])(volatile void *ptr) = {NULL, NULL, NULL};
-static volatile  void *EXTI_PfunArg[3] = {NULL, NULL, NULL};
+// static volatile void(*EXTI_Pfun[3][2]) = {{NULL, NULL}, {NULL, NULL}, {NULL, NULL}};
+static volatile void (*EXTI_Pfun[3])(volatile void *ptr) = {NULL, NULL, NULL};
+static volatile void *EXTI_PfunArg[3] = {NULL, NULL, NULL};
 
 ES_t EXTI_enuInit(EXTI_t *Copy_pstrEXTI)
 {
@@ -25,6 +25,8 @@ ES_t EXTI_enuInit(EXTI_t *Copy_pstrEXTI)
                 {
                 case EXTI_INT0:
                     GICR |= (1 << 6);
+                    MCUCR &= ~(1 << ISC01);
+                    MCUCR &= ~(1 << ISC00);
                     switch (Copy_pstrEXTI[Local_u8iterator].EXTI_u8senseMode)
                     {
                     case EXTI_u8FALLING_EDGE:
@@ -48,7 +50,8 @@ ES_t EXTI_enuInit(EXTI_t *Copy_pstrEXTI)
                     }
                     break;
                 case EXTI_INT1:
-                    GICR |= (1 << 7);
+                    MCUCR &= ~(1 << ISC01);
+                    MCUCR &= ~(1 << ISC00);
                     switch (Copy_pstrEXTI[Local_u8iterator].EXTI_u8senseMode)
                     {
                     case EXTI_u8FALLING_EDGE:
@@ -70,9 +73,11 @@ ES_t EXTI_enuInit(EXTI_t *Copy_pstrEXTI)
                     default:
                         break;
                     }
+                    GICR |= (1 << 7);
                     break;
                 case EXTI_INT2:
-                    GICR |= (1 << 5);
+                     GICR |= (1 << 5);
+
                     switch (Copy_pstrEXTI[Local_u8iterator].EXTI_u8senseMode)
                     {
                     case EXTI_u8FALLING_EDGE:
@@ -84,6 +89,7 @@ ES_t EXTI_enuInit(EXTI_t *Copy_pstrEXTI)
                     default:
                         break;
                     }
+                   
                     break;
                 default:
                     break;
@@ -156,86 +162,86 @@ ES_t EXTI_enuSetSenseMode(u8 Copy_u8EXTI_INDEX, u8 Copy_u8SenseMode)
     ES_t Local_enuErrorState = ES_NOK;
     if (Copy_u8SenseMode < 4 && Copy_u8EXTI_INDEX < 4)
     {
-         switch (Copy_u8EXTI_INDEX)
-    {
-    case EXTI_INT0:
-        switch (Copy_u8SenseMode)
+        switch (Copy_u8EXTI_INDEX)
         {
-        case EXTI_u8FALLING_EDGE:
-            MCUCR |= (1 << ISC01);
-            MCUCR &= ~(1 << ISC00);
-            break;
-        case EXTI_u8RISING_EDGE:
-            MCUCR |= (1 << ISC00);
-            MCUCR |= (1 << ISC01);
-            break;
-        case EXTI_u8ON_CHANGE:
-            MCUCR &= ~(1 << ISC01);
-            MCUCR |= (1 << ISC00);
-            break;
-        case EXTI_u8LOW_LEVEL:
-            MCUCR &= ~(1 << ISC01);
-            MCUCR &= ~(1 << ISC00);
-            break;
+        case EXTI_INT0:
+            switch (Copy_u8SenseMode)
+            {
+            case EXTI_u8FALLING_EDGE:
+                MCUCR |= (1 << ISC01);
+                MCUCR &= ~(1 << ISC00);
+                break;
+            case EXTI_u8RISING_EDGE:
+                MCUCR |= (1 << ISC00);
+                MCUCR |= (1 << ISC01);
+                break;
+            case EXTI_u8ON_CHANGE:
+                MCUCR &= ~(1 << ISC01);
+                MCUCR |= (1 << ISC00);
+                break;
+            case EXTI_u8LOW_LEVEL:
+                MCUCR &= ~(1 << ISC01);
+                MCUCR &= ~(1 << ISC00);
+                break;
+            default:
+                // Handle invalid sense mode
+                Local_enuErrorState = ES_NOK;
+                break;
+            }
+            break; // Add break here to prevent fallthrough
+
+        case EXTI_INT1:
+            switch (Copy_u8SenseMode)
+            {
+            case EXTI_u8FALLING_EDGE:
+                MCUCR |= (1 << ISC11);
+                MCUCR &= ~(1 << ISC10);
+                break;
+            case EXTI_u8RISING_EDGE:
+                MCUCR |= (1 << ISC10);
+                MCUCR |= (1 << ISC11);
+                break;
+            case EXTI_u8ON_CHANGE:
+                MCUCR &= ~(1 << ISC11);
+                MCUCR |= (1 << ISC10);
+                break;
+            case EXTI_u8LOW_LEVEL:
+                MCUCR &= ~(1 << ISC11);
+                MCUCR &= ~(1 << ISC10);
+                break;
+            default:
+                // Handle invalid sense mode
+                Local_enuErrorState = ES_NOK;
+                break;
+            }
+            break; // Add break here to prevent fallthrough
+
+        case EXTI_INT2:
+            switch (Copy_u8SenseMode)
+            {
+            case EXTI_u8FALLING_EDGE:
+                MCUCSR &= ~(1 << ISC2);
+                break;
+            case EXTI_u8RISING_EDGE:
+                MCUCSR |= (1 << ISC2);
+                break;
+            default:
+                // Handle invalid sense mode
+                Local_enuErrorState = ES_NOK;
+                break;
+            }
+            break; // Add break here to prevent fallthrough
+
         default:
-            // Handle invalid sense mode
+            // Handle invalid EXTI index
             Local_enuErrorState = ES_NOK;
             break;
         }
-        break;  // Add break here to prevent fallthrough
-
-    case EXTI_INT1:
-        switch (Copy_u8SenseMode)
-        {
-        case EXTI_u8FALLING_EDGE:
-            MCUCR |= (1 << ISC11);
-            MCUCR &= ~(1 << ISC10);
-            break;
-        case EXTI_u8RISING_EDGE:
-            MCUCR |= (1 << ISC10);
-            MCUCR |= (1 << ISC11);
-            break;
-        case EXTI_u8ON_CHANGE:
-            MCUCR &= ~(1 << ISC11);
-            MCUCR |= (1 << ISC10);
-            break;
-        case EXTI_u8LOW_LEVEL:
-            MCUCR &= ~(1 << ISC11);
-            MCUCR &= ~(1 << ISC10);
-            break;
-        default:
-            // Handle invalid sense mode
-            Local_enuErrorState = ES_NOK;
-            break;
-        }
-        break;  // Add break here to prevent fallthrough
-
-    case EXTI_INT2:
-        switch (Copy_u8SenseMode)
-        {
-        case EXTI_u8FALLING_EDGE:
-            MCUCSR &= ~(1 << ISC2);
-            break;
-        case EXTI_u8RISING_EDGE:
-            MCUCSR |= (1 << ISC2);
-            break;
-        default:
-            // Handle invalid sense mode
-            Local_enuErrorState = ES_NOK;
-            break;
-        }
-        break;  // Add break here to prevent fallthrough
-
-    default:
-        // Handle invalid EXTI index
-        Local_enuErrorState = ES_NOK;
-        break;
-    }
     }
 
     return Local_enuErrorState;
 }
-ES_t EXTI_enuSetCallBack(u8 Copy_u8EXTI_INDEX, volatile  void *Copy_pvCallBack, void *Copy_pvCallBackArg)
+ES_t EXTI_enuSetCallBack(u8 Copy_u8EXTI_INDEX, volatile void *Copy_pvCallBack, void *Copy_pvCallBackArg)
 {
     ES_t Local_enuErrorState = ES_NOK;
     if (Copy_u8EXTI_INDEX < 3)
@@ -255,9 +261,9 @@ ES_t EXTI_enuSetCallBack(u8 Copy_u8EXTI_INDEX, volatile  void *Copy_pvCallBack, 
 }
 ISR(VECT_INT0)
 {
-    if (EXTI_PfunArg[0] != NULL)
+    if (EXTI_Pfun[0] != NULL)
     {
-        (EXTI_Pfun[0])(EXTI_PfunArg[0]);
+        EXTI_Pfun[0](EXTI_PfunArg[0]);
     }
 }
 ISR(VECT_INT1)
