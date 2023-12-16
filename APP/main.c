@@ -24,6 +24,8 @@
 
 #include "../MCAL/Intterupt.h"
 #include "util/delay.h"
+#include "../MCAL/SPI/SPI_Int.h"
+#include "../MCAL/SPI/SPI_config.h"
 
 
 
