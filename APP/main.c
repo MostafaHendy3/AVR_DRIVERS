@@ -12,6 +12,8 @@
 #include "../MCAL/TIMERS/TIMER_config.h"
 #include "../MCAL/USART/USART_Int.h"
 #include "../MCAL/USART/USART_config.h"
+#include "../MCAL/SPI/SPI_Int.h"
+#include "../MCAL/SPI/SPI_config.h"
 
 
 #include "../HAL/LCD/LCD_config.h"
@@ -27,65 +29,73 @@
 
 
 extern EXTI_t EXTI_tConfig[3];
-static u16 periodTicks =0;
-static u16 OnTicks =0;
+
 void func(void);
 void ICU_HW(void);
 int main()
 {
+    //master
+    DIO_enuSetPinDirection(DIO_u8PORTB,DIO_u8PIN4,DIO_u8OUTPUT);
+    DIO_enuSetPinValue(DIO_u8PORTB,DIO_u8PIN4,DIO_u8HIGH);
+    DIO_enuSetPinDirection(DIO_u8PORTB,DIO_u8PIN5,DIO_u8OUTPUT);
+    DIO_enuSetPinValue(DIO_u8PORTB,DIO_u8PIN5,DIO_u8HIGH);
+    DIO_enuSetPinDirection(DIO_u8PORTB,DIO_u8PIN6,DIO_u8INPUT);
+    DIO_enuSetPinValue(DIO_u8PORTB,DIO_u8PIN6,DIO_u8FLOAT);
+    DIO_enuSetPinDirection(DIO_u8PORTB,DIO_u8PIN7,DIO_u8OUTPUT);
+    DIO_enuSetPinValue(DIO_u8PORTB,DIO_u8PIN7,DIO_u8HIGH);
+
+
+    SPI_init();   
     
-    DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN0,DIO_u8INPUT);
-    DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN1,DIO_u8OUTPUT);
-    USART_enuInit();
     //send string
-    USART_enuSendString("Welcome");
-    u8 local_data=0;  
+    //b in ascii is 98
+    u8 local_data=98;  
     while (1){
-       USART_enuReceiveChar(&local_data);
-         USART_enuSendChar(local_data);
+        SPI_sendData(local_data);
+        _delay_ms(100);
     }
     
 }
 
 
 
-void ICU_SW(){
-    static u8 counter =0;
-    counter++;
-    if(counter == 1){
-        TIMER1_SetTimerValue(0);
-    }else if (counter == 2){
-        TIMER1_GetTimerValue(&periodTicks);
-        EXTI_enuSetSenseMode(EXTI_u8INT1,EXTI_u8FALLING_EDGE);
+// void ICU_SW(){
+//     static u8 counter =0;
+//     counter++;
+//     if(counter == 1){
+//         TIMER1_SetTimerValue(0);
+//     }else if (counter == 2){
+//         TIMER1_GetTimerValue(&periodTicks);
+//         EXTI_enuSetSenseMode(EXTI_u8INT1,EXTI_u8FALLING_EDGE);
 
-    }else if (counter == 3){
-        /**/
-        TIMER1_GetTimerValue(&OnTicks);
-        OnTicks =OnTicks - periodTicks;
-        counter =0;
-        LCD_enuGoHome();
-    }
+//     }else if (counter == 3){
+//         /**/
+//         TIMER1_GetTimerValue(&OnTicks);
+//         OnTicks =OnTicks - periodTicks;
+//         counter =0;
+//         LCD_enuGoHome();
+//     }
     
-}
+// }
 
-void ICU_HW(){
-    static u8 local_count =0;
-    static u16 ReadingOne =0;
-    static u16 Readingtwo =0;
-    static u16 Readingthree =0;
-    local_count++;
-    if(local_count==1){
-        ICU_enuReadInputCapture(&ReadingOne);
-    }else if (local_count ==2){
-        ICU_enuReadInputCapture(&Readingtwo);
-        periodTicks =Readingtwo- ReadingOne;
-        ICU_enuSetEdge(Falling_edge);
-    }else if(local_count == 3){
-        ICU_enuReadInputCapture(&Readingthree);
-        OnTicks = Readingthree -Readingtwo;
-        ICU_enuDisableINT();
-    }
-}
+// void ICU_HW(){
+//     static u8 local_count =0;
+//     static u16 ReadingOne =0;
+//     static u16 Readingtwo =0;
+//     static u16 Readingthree =0;
+//     local_count++;
+//     if(local_count==1){
+//         ICU_enuReadInputCapture(&ReadingOne);
+//     }else if (local_count ==2){
+//         ICU_enuReadInputCapture(&Readingtwo);
+//         periodTicks =Readingtwo- ReadingOne;
+//         ICU_enuSetEdge(Falling_edge);
+//     }else if(local_count == 3){
+//         ICU_enuReadInputCapture(&Readingthree);
+//         OnTicks = Readingthree -Readingtwo;
+//         ICU_enuDisableINT();
+//     }
+// }
 
 /* 
     DIO_enuInit();
