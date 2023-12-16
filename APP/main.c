@@ -22,6 +22,8 @@
 
 #include "../MCAL/Intterupt.h"
 #include "util/delay.h"
+#include "../MCAL/SPI/SPI_Int.h"
+#include "../MCAL/SPI/SPI_config.h"
 
 
 
@@ -33,16 +35,23 @@ void func(void);
 void ICU_HW(void);
 int main()
 {
+
+    //SLAVE
+    LCD_enuInit();
+    DIO_enuSetPinDirection(DIO_u8PORTB,DIO_u8PIN4,DIO_u8INPUT);
+    DIO_enuSetPinDirection(DIO_u8PORTB,DIO_u8PIN5,DIO_u8INPUT);
+    DIO_enuSetPinDirection(DIO_u8PORTB,DIO_u8PIN6,DIO_u8OUTPUT);
+    DIO_enuSetPinDirection(DIO_u8PORTB,DIO_u8PIN7,DIO_u8INPUT);
+
+    SPI_init();
+   
     
-    DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN0,DIO_u8INPUT);
-    DIO_enuSetPinValue(DIO_u8PORTD,DIO_u8PIN1,DIO_u8OUTPUT);
-    USART_enuInit();
     //send string
-    USART_enuSendString("Welcome");
+
     u8 local_data=0;  
     while (1){
-       USART_enuReceiveChar(&local_data);
-         USART_enuSendChar(local_data);
+        SPI_RecieveData(&local_data);
+        LCD_enuDisplayChar(local_data);
     }
     
 }
